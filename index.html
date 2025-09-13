@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Germark Portal</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Login Screen -->
+  <div id="login-screen" class="screen login-box">
+    <img src="assets/icon.png" alt="Germark Icon" class="login-icon" />
+    <div class="flag-container">
+      <img src="assets/germark-flag.png" alt="Germark Flag" class="flag" />
+    </div>
+    <h1>WELCOME TO THE REPUBLIC OF GERMARK</h1>
+    <input type="text" id="name" placeholder="Name" />
+    <input type="text" id="chip-id" placeholder="Chip ID" />
+    <button onclick="login()">Enter Republic</button>
+    <p id="login-error" style="display: none; color: red; margin-top: 0.5rem;">Access Denied</p>
+  </div>
+
+  <!-- Home Screen -->
+  <div id="home-screen" class="screen" style="display: none;">
+    <header>
+      <img src="assets/icon.png" alt="Germark Logo" class="logo-small" />
+      <img src="assets/germark-flag.png" alt="Germark Flag" class="flag-small" />
+      <h2>Germark Digital Portal</h2>
+    </header>
+
+    <nav class="tabs">
+      <button onclick="showTab('about')">About</button>
+      <button onclick="showTab('passport')">Passport</button>
+      <button onclick="showTab('news')">News</button>
+      <button onclick="showTab('profile')">Profile</button>
+      <button onclick="showTab('citizens')">Citizens</button>
+      <button onclick="showTab('apartment')">Apartment</button>
+    </nav>
+
+    <main>
+      <!-- About Tab -->
+      <section id="about" class="tab-content">
+        <h3>About Germark</h3>
+        <p><strong>Germark</strong> is a sovereign digital republic founded on peace, identity, and innovation. Citizens are united by shared values, secure technology, and a commitment to progress.</p>
+
+        <h4>🗺️ Geography & Territory</h4>
+        <p>Germark is a hybrid micro-nation with both digital and physical presence. Its territory is a 20×20 cm 3D-printed city — a symbolic capital engineered with hybrid materials. This miniature city rotates daily between the two founding leaders, Mouhammad and Björn, reinforcing Germark’s commitment to shared leadership and unity.</p>
+
+        <h4>👥 Citizenship</h4>
+        <p>Each citizen is issued a unique Chip ID and registered by name. Citizenship grants access to national services such as digital passports, apartment assignments, and participation in Germark’s evolving governance.</p>
+
+        <h4>🏛️ Government</h4>
+        <p>Germark is governed by a central digital authority. The founding citizen, Mouhammad, serves as the architect and steward of Germark’s digital constitution, alongside co-leader Björn.</p>
+
+        <h4>🛂 Passport Preview</h4>
+        <p>You can download the official Germark passport preview here:</p>
+        <a href="assets/Pas Germark watermarked.pdf" download class="passport-link">📄 Download Passport PDF</a>
+
+        <h4>📬 Contact</h4>
+        <p>Email: <a href="mailto:Germarkcontact@gmail.com">Germarkcontact@gmail.com</a></p>
+      </section>
+
+      <!-- Passport Tab -->
+      <section id="passport" class="tab-content" style="display: none;">
+        <h3>Passport Access</h3>
+        <div id="passport-setup">
+          <input type="password" id="passport-create" placeholder="Create Passport Password" />
+          <button onclick="createPassport()">Set Password</button>
+        </div>
+        <div id="passport-login" style="display: none;">
+          <input type="password" id="passport-password" placeholder="Enter Passport Password" />
+          <button onclick="unlockPassport()">Unlock</button>
+        </div>
+        <div id="passport-content" style="display: none;">
+          <p>Coming soon...</p>
+        </div>
+      </section>
+
+      <!-- News Tab -->
+      <section id="news" class="tab-content" style="display: none;">
+        <h3>Germark News</h3>
+        <p>Join our official Discord server:</p>
+        <a href="https://discord.gg/huKPsG5V" target="_blank">https://discord.gg/huKPsG5V</a>
+        <img src="assets/qr-discord.png" alt="Discord QR Code" class="qr-code" />
+        <h4>Articles</h4>
+        <div class="news-articles" id="news-articles"></div>
+      </section>
+
+      <!-- Profile Tab -->
+      <section id="profile" class="tab-content" style="display: none;">
+        <h3>Your Profile</h3>
+        <p>Name: <span id="profile-name"></span></p>
+        <input type="file" id="profile-image" accept="image/*" multiple onchange="saveProfileImage()" />
+        <div id="profile-gallery"></div>
+      </section>
+
+      <!-- Citizens Tab -->
+      <section id="citizens" class="tab-content" style="display: none;">
+        <h3>Admin Panel</h3>
+        <input type="password" id="admin-password" placeholder="Enter Admin Password" />
+        <button onclick="unlockAdmin()">Unlock</button>
+        <div id="admin-panel" style="display: none;">
+          <p id="citizen-count">Total Citizens: 0</p>
+
+          <h4>Manage Citizens</h4>
+          <input type="text" id="new-chip-id" placeholder="Chip ID" />
+          <input type="text" id="new-citizen-name" placeholder="Citizen Name" />
+          <button onclick="addCitizen()">Add Citizen</button>
+
+          <input type="text" id="remove-chip-id" placeholder="Remove by Chip ID" />
+          <button onclick="removeCitizen(document.getElementById('remove-chip-id').value)">Remove Citizen</button>
+
+          <ul id="citizen-list"></ul>
+
+          <h4>Assign Apartment</h4>
+          <input type="text" id="assign-name" placeholder="Citizen Name" />
+          <input type="text" id="assign-apartment" placeholder="Apartment Name" />
+          <button onclick="assignApartment(
+            document.getElementById('assign-name').value,
+            document.getElementById('assign-apartment').value
+          )">Assign Apartment</button>
+
+          <h4>Add News Article</h4>
+          <input type="text" id="news-title" placeholder="News Title" />
+          <textarea id="news-body" placeholder="News Content"></textarea>
+          <input type="file" id="news-image" accept="image/*" />
+          <button onclick="addNews()">Add News</button>
+          <button onclick="removeLastNews()">Remove Last News</button>
+        </div>
+      </section>
+
+      <!-- Apartment Tab -->
+      <section id="apartment" class="tab-content" style="display: none;">
+        <h3>Your Apartment</h3>
+        <p id="apartment-info">Assigned apartment will appear here.</p>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>

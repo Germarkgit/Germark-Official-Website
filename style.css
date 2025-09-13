@@ -1,0 +1,280 @@
+/* Global Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+body {
+  background-color: #e6f4ec; /* soft green */
+  color: #1e3d2f; /* deep green text */
+}
+
+/* Login Screen */
+.login-box {
+  position: relative;
+  text-align: center;
+  padding: 3rem 1rem;
+  background-color: #d1e7dc;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  max-width: 500px;
+  margin: 5rem auto;
+  animation: zoomIn 0.6s ease;
+}
+
+@keyframes zoomIn {
+  0% {
+    transform: scale(0.7);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.login-icon {
+  position: absolute;
+  top: 1rem;
+  left: 1rem;
+  width: 40px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.flag-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+.flag {
+  width: 100px;
+  border-radius: 8px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+}
+
+h1 {
+  font-size: 1.8rem;
+  margin-bottom: 1rem;
+  color: #14532d;
+  text-shadow: 0 0 2px #d4af37; /* golden glow */
+}
+
+input[type="text"],
+input[type="password"],
+textarea {
+  width: 80%;
+  max-width: 400px;
+  padding: 0.6rem;
+  margin: 0.5rem auto;
+  display: block;
+  border: 1px solid #cce3d8;
+  border-radius: 6px;
+  background-color: #ffffff;
+}
+
+button {
+  padding: 0.6rem 1.2rem;
+  margin-top: 0.5rem;
+  background-color: #2f855a;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #276749;
+}
+
+/* Error Message */
+#login-error {
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+/* Home Screen */
+.screen {
+  padding: 1rem;
+}
+
+header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  background-color: #14532d;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  color: white;
+}
+
+.logo-small {
+  width: 40px;
+  height: auto;
+  border-radius: 50%;
+}
+
+.flag-small {
+  width: 60px;
+  height: auto;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+h2 {
+  font-size: 1.5rem;
+  color: #fefefe;
+}
+
+/* Tabs */
+.tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+  flex-wrap: wrap;
+}
+
+.tabs button {
+  background-color: #d1e7dc;
+  color: #14532d;
+  border: 1px solid #cce3d8;
+}
+
+.tabs button:hover {
+  background-color: #c0dbc9;
+}
+
+/* Tab Wrapper and Transitions */
+.tab-wrapper {
+  position: relative;
+  overflow: hidden;
+  min-height: 300px;
+}
+
+.tab-content {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  transition: transform 0.4s ease, opacity 0.4s ease;
+  opacity: 0;
+  transform: translateX(100%);
+  pointer-events: none;
+}
+
+.tab-content.active {
+  opacity: 1;
+  transform: translateX(0);
+  pointer-events: auto;
+  position: relative;
+}
+
+/* News */
+.news-articles article {
+  margin-bottom: 1rem;
+  padding: 1rem;
+  border-left: 4px solid #2f855a;
+  background-color: #f0fdf4;
+  border-radius: 6px;
+}
+
+.news-articles h5 {
+  margin-bottom: 0.5rem;
+  color: #14532d;
+}
+
+.news-image {
+  max-width: 100%;
+  margin-top: 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+.qr-code {
+  width: 120px;
+  margin: 1rem 0;
+}
+
+/* Profile */
+#profile-gallery img {
+  width: 100px;
+  margin: 0.5rem;
+  border-radius: 6px;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
+}
+
+/* Admin Panel */
+#admin-panel {
+  margin-top: 1rem;
+  padding: 1rem;
+  background-color: #f9fcfa;
+  border: 1px solid #cce3d8;
+  border-radius: 8px;
+}
+
+#citizen-list {
+  list-style: none;
+  margin-top: 0.5rem;
+}
+
+#citizen-list li {
+  padding: 0.3rem 0;
+  border-bottom: 1px solid #e2e8f0;
+}
+
+/* Apartment Info */
+#apartment-info {
+  font-weight: bold;
+  color: #14532d;
+  margin-top: 1rem;
+}
+
+/* Passport Link */
+.passport-link {
+  display: inline-block;
+  margin-top: 0.5rem;
+  padding: 0.4rem 0.8rem;
+  background-color: #d4af37; /* golden */
+  color: #1e3d2f;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: bold;
+}
+
+.passport-link:hover {
+  background-color: #c49e2e;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  input[type="text"],
+  input[type="password"],
+  textarea {
+    width: 95%;
+  }
+
+  .tabs {
+    flex-direction: column;
+  }
+
+  .logo-small {
+    width: 30px;
+  }
+
+  .flag-small {
+    width: 50px;
+  }
+
+  .login-icon {
+    width: 30px;
+  }
+
+  .flag {
+    width: 90px;
+  }
+}
