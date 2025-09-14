@@ -44,13 +44,13 @@
         <p><strong>Germark</strong> is a sovereign digital republic founded on peace, identity, and innovation. Citizens are united by shared values, secure technology, and a commitment to progress.</p>
 
         <h4>🗺️ Geography & Territory</h4>
-        <p>Germark is a hybrid micro-nation with both digital and physical presence. Its territory is a 20×20 cm 3D-printed city — a symbolic capital engineered with hybrid materials. This miniature city rotates daily between the two founding leaders, Mouhammad and Björn, reinforcing Germark’s commitment to shared leadership and unity.</p>
+        <p>Germark is a hybrid micro-nation with both digital and physical presence. Its territory is a 20×20 cm 3D-printed city — a symbolic capital engineered with hybrid materials.</p>
 
         <h4>👥 Citizenship</h4>
         <p>Each citizen is issued a unique Chip ID and registered by name. Citizenship grants access to national services such as digital passports, apartment assignments, and participation in Germark’s evolving governance.</p>
 
         <h4>🏛️ Government</h4>
-        <p>Germark is governed by a central digital authority. The founding citizen, Mouhammad, serves as the architect and steward of Germark’s digital constitution, alongside co-leader Björn.</p>
+        <p>Germark is governed by a central digital authority. The founding citizen, Mouhammad, serves as the architect and steward of Germark’s digital constitution.</p>
 
         <h4>🛂 Passport Preview</h4>
         <p>You can download the official Germark passport preview here:</p>
@@ -115,10 +115,7 @@
           <h4>Assign Apartment</h4>
           <input type="text" id="assign-name" placeholder="Citizen Name" />
           <input type="text" id="assign-apartment" placeholder="Apartment Name" />
-          <button onclick="assignApartment(
-            document.getElementById('assign-name').value,
-            document.getElementById('assign-apartment').value
-          )">Assign Apartment</button>
+          <button onclick="assignApartment(document.getElementById('assign-name').value, document.getElementById('assign-apartment').value)">Assign Apartment</button>
 
           <h4>Add News Article</h4>
           <input type="text" id="news-title" placeholder="News Title" />
@@ -137,6 +134,7 @@
     </main>
   </div>
 
-  <script src="script.js"></script>
+  <!-- Firebase-powered script -->
+  <script type="module" src="script.js"></script>
 </body>
 </html>
