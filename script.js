@@ -247,11 +247,11 @@ function displayNews() {
   });
 }
 
-// Expose functions to global scope
+// ✅ Expose functions to global scope for HTML onclick compatibility
 window.login = login;
 window.showTab = showTab;
 window.createPassport = createPassport;
 window.unlockPassport = unlockPassport;
 window.saveProfileImage = saveProfileImage;
 window.loadProfileImage = loadProfileImage;
-window.unlockAdmin
+window
