@@ -1,35 +1,36 @@
-// Initialize citizens if not already stored
-let citizens = JSON.parse(localStorage.getItem("germarkCitizens"));
-if (!citizens) {
-  citizens = {
-    "001": "Mouhammad",
-    "002": "Björn",
-    "003": "Ludvig c",
-    "004": "Andre",
-    "005": "Lucas",
-    "006": "Johan",
-    "007": "Abdul",
-    "008": "Astrid",
-    "009": "Sander",
-    "010": "Frederik"
-  };
-  localStorage.setItem("germarkCitizens", JSON.stringify(citizens));
-}
+import { initializeApp } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-app.js";
+import { getDatabase, ref, set, get, onValue, remove } from "https://www.gstatic.com/firebasejs/12.2.1/firebase-database.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAJkSlH4IRuIOldjQyyEWINr2sGFylQ8co",
+  authDomain: "germarkdigitalportal.firebaseapp.com",
+  databaseURL: "https://germarkdigitalportal-default-rtdb.firebaseio.com",
+  projectId: "germarkdigitalportal",
+  storageBucket: "germarkdigitalportal.firebasestorage.app",
+  messagingSenderId: "511878818738",
+  appId: "1:511878818738:web:a6c48f91f655ab30f352ab",
+  measurementId: "G-4PY8F5WC60"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getDatabase(app);
 
 let currentUser = null;
 
 // Login
-function login() {
+async function login() {
   const chipId = document.getElementById("chip-id").value.trim();
   const name = document.getElementById("name").value.trim();
 
-  if (citizens[chipId] && citizens[chipId].toLowerCase() === name.toLowerCase()) {
-    currentUser = citizens[chipId];
+  const snapshot = await get(ref(db, "citizens/" + chipId));
+  const citizen = snapshot.val();
+
+  if (citizen && citizen.name.toLowerCase() === name.toLowerCase()) {
+    currentUser = citizen.name;
     document.getElementById("login-screen").style.display = "none";
     document.getElementById("home-screen").style.display = "block";
     document.getElementById("profile-name").textContent = currentUser;
     document.getElementById("login-error").style.display = "none";
-    loadProfileImage();
     loadApartment();
     showTab("about");
   } else {
@@ -52,7 +53,7 @@ function showTab(tabId) {
   if (tabId === "passport") loadPassportTab();
 }
 
-// Passport
+// Passport (local only)
 function createPassport() {
   const password = document.getElementById("passport-create").value.trim();
   if (!password || !currentUser) return;
@@ -78,17 +79,12 @@ function unlockPassport() {
 
 function loadPassportTab() {
   const saved = localStorage.getItem(`passport_${currentUser}`);
-  if (saved) {
-    document.getElementById("passport-setup").style.display = "none";
-    document.getElementById("passport-login").style.display = "block";
-  } else {
-    document.getElementById("passport-setup").style.display = "block";
-    document.getElementById("passport-login").style.display = "none";
-  }
+  document.getElementById("passport-setup").style.display = saved ? "none" : "block";
+  document.getElementById("passport-login").style.display = saved ? "block" : "none";
   document.getElementById("passport-content").style.display = "none";
 }
 
-// Profile Images
+// Profile Images (local only)
 function saveProfileImage() {
   const files = document.getElementById("profile-image").files;
   const gallery = document.getElementById("profile-gallery");
@@ -136,44 +132,37 @@ function unlockAdmin() {
 function addCitizen() {
   const chipId = document.getElementById("new-chip-id").value.trim();
   const name = document.getElementById("new-citizen-name").value.trim();
+  if (!chipId || !name) return alert("Please enter both Chip ID and Name.");
 
-  if (!chipId || !name) {
-    alert("Please enter both Chip ID and Name.");
-    return;
-  }
-
-  citizens[chipId] = name;
-  localStorage.setItem("germarkCitizens", JSON.stringify(citizens));
+  set(ref(db, "citizens/" + chipId), { chipId, name });
   updateCitizenList();
-  document.getElementById("new-chip-id").value = "";
-  document.getElementById("new-citizen-name").value = "";
 }
 
 function removeCitizen(chipId) {
-  if (citizens[chipId]) {
-    delete citizens[chipId];
-    localStorage.setItem("germarkCitizens", JSON.stringify(citizens));
-    updateCitizenList();
-  }
+  remove(ref(db, "citizens/" + chipId));
+  updateCitizenList();
 }
 
 function updateCitizenList() {
   const list = document.getElementById("citizen-list");
   list.innerHTML = "";
-  const entries = Object.entries(citizens);
-  document.getElementById("citizen-count").textContent = `Total Citizens: ${entries.length}`;
 
-  entries.forEach(([chip, name]) => {
-    const li = document.createElement("li");
-    li.textContent = `${chip} → ${name}`;
-    list.appendChild(li);
+  onValue(ref(db, "citizens"), (snapshot) => {
+    const data = snapshot.val();
+    const entries = Object.entries(data || {});
+    document.getElementById("citizen-count").textContent = `Total Citizens: ${entries.length}`;
+    entries.forEach(([chip, citizen]) => {
+      const li = document.createElement("li");
+      li.textContent = `${chip} → ${citizen.name}`;
+      list.appendChild(li);
+    });
   });
 }
 
 // Apartment
 function assignApartment(name, apartment) {
   if (!name || !apartment) return;
-  localStorage.setItem(`apartment_${name}`, apartment);
+  set(ref(db, "apartments/" + name), { apartment });
   updateApartmentDisplay(name);
 }
 
@@ -182,8 +171,10 @@ function loadApartment() {
 }
 
 function updateApartmentDisplay(name) {
-  const apt = localStorage.getItem(`apartment_${name}`);
-  document.getElementById("apartment-info").textContent = apt ? `Apartment: ${apt}` : "No apartment assigned.";
+  onValue(ref(db, "apartments/" + name), (snapshot) => {
+    const data = snapshot.val();
+    document.getElementById("apartment-info").textContent = data ? `Apartment: ${data.apartment}` : "No apartment assigned.";
+  });
 }
 
 // News
@@ -193,60 +184,55 @@ function addNews() {
   const imageInput = document.getElementById("news-image");
   const file = imageInput.files[0];
 
-  if (!title || !body) {
-    alert("Please enter both title and content.");
-    return;
-  }
+  if (!title || !body) return alert("Please enter both title and content.");
 
   const reader = new FileReader();
   reader.onload = function () {
-    const newsItem = {
-      title,
-      body,
-      image: reader.result
-    };
-
-    const existingNews = JSON.parse(localStorage.getItem("germarkNews") || "[]");
-    existingNews.push(newsItem);
-    localStorage.setItem("germarkNews", JSON.stringify(existingNews));
+    const newsItem = { title, body, image: reader.result };
+    const key = Date.now().toString();
+    set(ref(db, "news/" + key), newsItem);
     displayNews();
-    document.getElementById("news-title").value = "";
-    document.getElementById("news-body").value = "";
-    imageInput.value = "";
   };
 
-  if (file) {
-    reader.readAsDataURL(file);
-  } else {
-    const newsItem = { title, body, image: null };
-    const existingNews = JSON.parse(localStorage.getItem("germarkNews") || "[]");
-    existingNews.push(newsItem);
-    localStorage.setItem("germarkNews", JSON.stringify(existingNews));
+  if (file) reader.readAsDataURL(file);
+  else {
+    const key = Date.now().toString();
+    set(ref(db, "news/" + key), { title, body, image: null });
     displayNews();
-    document.getElementById("news-title").value = "";
-    document.getElementById("news-body").value = "";
   }
+
+  document.getElementById("news-title").value = "";
+  document.getElementById("news-body").value = "";
+  imageInput.value = "";
 }
 
 function removeLastNews() {
-  const existingNews = JSON.parse(localStorage.getItem("germarkNews") || "[]");
-  existingNews.pop();
-  localStorage.setItem("germarkNews", JSON.stringify(existingNews));
-  displayNews();
+  get(ref(db, "news")).then(snapshot => {
+    const data = snapshot.val();
+    if (!data) return;
+    const keys = Object.keys(data);
+    const lastKey = keys[keys.length - 1];
+    remove(ref(db, "news/" + lastKey));
+    displayNews();
+  });
 }
 
 function displayNews() {
   const container = document.getElementById("news-articles");
   container.innerHTML = "";
-  const newsList = JSON.parse(localStorage.getItem("germarkNews") || "[]");
 
-  newsList.forEach(item => {
-    const article = document.createElement("article");
-    article.innerHTML = `
-      <h5>${item.title}</h5>
-      <p>${item.body}</p>
-      ${item.image ? `<img src="${item.image}" class="news-image" />` : ""}
-    `;
-    container.appendChild(article);
+  onValue(ref(db, "news"), (snapshot) => {
+    const newsList = snapshot.val();
+    if (!newsList) return;
+
+    Object.values(newsList).forEach(item => {
+      const article = document.createElement("article");
+      article.innerHTML = `
+        <h5>${item.title}</h5>
+        <p>${item.body}</p>
+        ${item.image ? `<img src="${item.image}" class="news-image" />` : ""}
+      `;
+      container.appendChild(article);
+    });
   });
 }
