@@ -22,19 +22,29 @@ async function login() {
   const chipId = document.getElementById("chip-id").value.trim();
   const name = document.getElementById("name").value.trim();
 
-  const snapshot = await get(ref(db, "citizens/" + chipId));
-  const citizen = snapshot.val();
+  if (!chipId || !name) {
+    alert("Please enter both Chip ID and Name.");
+    return;
+  }
 
-  if (citizen && citizen.name.toLowerCase() === name.toLowerCase()) {
-    currentUser = citizen.name;
-    document.getElementById("login-screen").style.display = "none";
-    document.getElementById("home-screen").style.display = "block";
-    document.getElementById("profile-name").textContent = currentUser;
-    document.getElementById("login-error").style.display = "none";
-    loadApartment();
-    showTab("about");
-  } else {
-    document.getElementById("login-error").style.display = "block";
+  try {
+    const snapshot = await get(ref(db, "citizens/" + chipId));
+    const citizen = snapshot.val();
+
+    if (citizen && citizen.name.toLowerCase() === name.toLowerCase()) {
+      currentUser = citizen.name;
+      document.getElementById("login-screen").style.display = "none";
+      document.getElementById("home-screen").style.display = "block";
+      document.getElementById("profile-name").textContent = currentUser;
+      document.getElementById("login-error").style.display = "none";
+      loadApartment();
+      showTab("about");
+    } else {
+      document.getElementById("login-error").style.display = "block";
+    }
+  } catch (error) {
+    console.error("Login error:", error);
+    alert("Something went wrong. Check your Firebase setup.");
   }
 }
 
@@ -236,3 +246,12 @@ function displayNews() {
     });
   });
 }
+
+// Expose functions to global scope
+window.login = login;
+window.showTab = showTab;
+window.createPassport = createPassport;
+window.unlockPassport = unlockPassport;
+window.saveProfileImage = saveProfileImage;
+window.loadProfileImage = loadProfileImage;
+window.unlockAdmin
