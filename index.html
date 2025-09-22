@@ -34,7 +34,7 @@
         <h2>Citizen Login</h2>
         <input type="text" id="name" placeholder="Name" />
         <input type="text" id="chip-id" placeholder="Chip ID" />
-        <button onclick="login()">Enter Republic</button>
+        <button id="login-button">Enter Republic</button>
         <p id="login-error" style="display:none;">Login failed. Please check your credentials.</p>
       </div>
     </section>
@@ -48,56 +48,7 @@
         <button onclick="showTab('news')">News</button>
         <button onclick="showTab('admin')">Admin</button>
       </nav>
-
-      <div id="passport" class="tab-content">
-        <h3>Passport</h3>
-        <div id="passport-setup">
-          <input type="password" id="passport-create" placeholder="Create Passport Password" />
-          <button onclick="createPassport()">Create</button>
-        </div>
-        <div id="passport-login" style="display:none;">
-          <input type="password" id="passport-password" placeholder="Enter Passport Password" />
-          <button onclick="unlockPassport()">Unlock</button>
-        </div>
-        <div id="passport-content" style="display:none;">
-          <p>Passport unlocked. Welcome to Germark.</p>
-        </div>
-      </div>
-
-      <div id="profile" class="tab-content" style="display:none;">
-        <h3>Profile</h3>
-        <input type="file" id="profile-image" multiple />
-        <button onclick="saveProfileImage()">Save Images</button>
-        <div id="profile-gallery"></div>
-      </div>
-
-      <div id="apartment" class="tab-content" style="display:none;">
-        <h3>Apartment</h3>
-        <p id="apartment-info">Loading...</p>
-      </div>
-
-      <div id="news" class="tab-content" style="display:none;">
-        <h3>News</h3>
-        <input type="text" id="news-title" placeholder="Title" />
-        <textarea id="news-body" placeholder="Content"></textarea>
-        <input type="file" id="news-image" />
-        <button onclick="addNews()">Post News</button>
-        <button onclick="removeLastNews()">Remove Last</button>
-        <div id="news-articles"></div>
-      </div>
-
-      <div id="admin" class="tab-content" style="display:none;">
-        <h3>Admin Panel</h3>
-        <input type="password" id="admin-password" placeholder="Admin Password" />
-        <button onclick="unlockAdmin()">Unlock</button>
-        <div id="admin-panel" style="display:none;">
-          <input type="text" id="new-chip-id" placeholder="New Chip ID" />
-          <input type="text" id="new-citizen-name" placeholder="New Citizen Name" />
-          <button onclick="addCitizen()">Add Citizen</button>
-          <ul id="citizen-list"></ul>
-          <p id="citizen-count"></p>
-        </div>
-      </div>
+      <!-- Dashboard content goes here -->
     </section>
   </main>
 
