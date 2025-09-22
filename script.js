@@ -38,13 +38,13 @@ async function login() {
       document.getElementById("profile-name").textContent = currentUser;
       document.getElementById("login-error").style.display = "none";
       loadApartment();
-      showTab("about");
+      showTab("passport");
     } else {
       document.getElementById("login-error").style.display = "block";
     }
   } catch (error) {
     console.error("Login error:", error);
-    alert("Something went wrong. Check your Firebase setup.");
+    alert("Something went wrong. Please check your connection.");
   }
 }
 
@@ -56,8 +56,10 @@ function showTab(tabId) {
   });
 
   const activeTab = document.getElementById(tabId);
-  activeTab.style.display = "block";
-  activeTab.classList.add("active");
+  if (activeTab) {
+    activeTab.style.display = "block";
+    activeTab.classList.add("active");
+  }
 
   if (tabId === "news") displayNews();
   if (tabId === "passport") loadPassportTab();
@@ -247,9 +249,7 @@ function displayNews() {
   });
 }
 
-// ✅ Expose functions to global scope
+// Expose functions globally
 window.login = login;
 window.showTab = showTab;
-window.createPassport = createPassport;
-window.unlockPassport = unlockPassport;
-window.saveProfileImage
+window.createPassport
