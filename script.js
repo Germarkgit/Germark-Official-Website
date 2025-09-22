@@ -254,4 +254,12 @@ function displayNews() {
 window.login = login;
 window.showTab = showTab;
 window.createPassport = createPassport;
-window.unlockPassport = unlock
+window.unlockPassport = unlockPassport;
+window.saveProfileImage = saveProfileImage;
+window.loadProfileImage = loadProfileImage;
+window.unlockAdmin = unlockAdmin;
+window.addCitizen = addCitizen;
+window.removeCitizen = removeCitizen;
+window.assignApartment = assignApartment;
+window.addNews = addNews;
+window.removeLastNews = removeLastNews;
