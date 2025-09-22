@@ -1,7 +1,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #355e3b, #a9d18e); /* Dark green to light green */
+  background: linear-gradient(to bottom right, #355e3b, #a9d18e);
   min-height: 100vh;
   overflow-x: hidden;
   color: white;
@@ -23,7 +23,7 @@ header {
 
 nav button {
   padding: 10px 15px;
-  background-color: #355e3b; /* Dark green */
+  background-color: #355e3b;
   color: white;
   border: none;
   border-radius: 6px;
@@ -35,14 +35,17 @@ nav button:hover {
   background-color: #274e13;
 }
 
-.flag {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  opacity: 0.1;
-  max-width: 80%;
-  z-index: 0;
+.flag-banner {
+  width: 100%;
+  text-align: center;
+  margin-top: 80px;
+}
+
+.flag-banner img {
+  max-width: 300px;
+  height: auto;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
 }
 
 main {
@@ -67,7 +70,8 @@ main {
   display: block;
 }
 
-#login-screen input {
+input,
+textarea {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -77,12 +81,12 @@ main {
   color: white;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: #eee;
 }
 
-#login-screen button {
-  width: 100%;
+button {
   padding: 10px;
   background-color: #355e3b;
   color: white;
@@ -90,15 +94,29 @@ input::placeholder {
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
-  transition: background 0.3s ease;
 }
 
-#login-screen button:hover {
+button:hover {
   background-color: #274e13;
 }
 
 #login-error {
   margin-top: 10px;
-  color: #ffd700; /* Golden */
+  color: #ffd700;
   font-size: 0.9em;
+}
+
+#profile-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#profile-gallery img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ccc;
 }
