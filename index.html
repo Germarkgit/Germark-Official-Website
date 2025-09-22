@@ -5,124 +5,83 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Germark Republic</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 <body>
-  <!-- Public About Section -->
-  <header class="header">
-    <img src="assets/icon.png" alt="Germark Icon" class="logo" />
-    <img src="assets/germark-flag.png" alt="Germark Flag" class="flag" />
-    <h1>Welcome to the Republic of Germark</h1>
+  <header>
+    <h1>Germark Republic</h1>
+    <p>Governed by a central digital authority. Founding citizens: Mouhammad & Bjorn.</p>
+    <p>Contact: <a href="mailto:Germarkcontact@gmail.com">Germarkcontact@gmail.com</a></p>
   </header>
 
-  <main class="content">
-    <section class="about">
-      <h2>🛡️ About Germark</h2>
-      <p><strong>Germark</strong> is a sovereign digital republic founded by <strong>Mouhammad</strong> and <strong>Björn</strong>. It stands for peace, identity, and innovation.</p>
-
-      <h3>🗺️ Territory</h3>
-      <p>Germark’s capital is a 20×20 cm 3D-printed symbolic city, engineered with hybrid materials to represent our digital-physical sovereignty. As we grow, so will our symbolic territory — from micro-architecture to macro-ideals.</p>
-
-      <h3>👥 Citizenship</h3>
-      <p>Each citizen is issued a unique Chip ID and registered by name. Citizenship grants access to national services such as digital passports, apartment assignments, and participation in Germark’s evolving governance. We are onboarding new citizens, expanding our registry, and preparing for diplomatic recognition.</p>
-
-      <h3>🏛️ Government</h3>
-      <p>Germark is governed by a central digital authority. The founding citizens, Mouhammad and Björn, serve as architects and stewards of Germark’s digital constitution. As Germark grows, so will its institutions — from symbolic ministries to real-world collaborations.</p>
-
-      <h3>📬 Contact</h3>
-      <p>Email: <a href="mailto:Germarkcontact@gmail.com">Germarkcontact@gmail.com</a></p>
-    </section>
-  </main>
-
-  <!-- Login Screen -->
-  <div id="login-screen" class="screen login-box">
+  <section id="login-screen">
     <h2>Citizen Login</h2>
     <input type="text" id="name" placeholder="Name" />
     <input type="text" id="chip-id" placeholder="Chip ID" />
     <button onclick="login()">Enter Republic</button>
-    <p id="login-error" style="display: none; color: red; margin-top: 0.5rem;">Access Denied</p>
-  </div>
+    <p id="login-error" style="display:none; color:red;">Login failed. Please check your credentials.</p>
+  </section>
 
-  <!-- Home Screen -->
-  <div id="home-screen" class="screen" style="display: none;">
-    <header>
-      <img src="assets/icon.png" alt="Germark Logo" class="logo-small" />
-      <img src="assets/germark-flag.png" alt="Germark Flag" class="flag-small" />
-      <h2>Germark Digital Portal</h2>
-    </header>
-
-    <nav class="tabs">
+  <section id="home-screen" style="display:none;">
+    <h2>Welcome, <span id="profile-name"></span></h2>
+    <nav>
       <button onclick="showTab('passport')">Passport</button>
-      <button onclick="showTab('news')">News</button>
       <button onclick="showTab('profile')">Profile</button>
-      <button onclick="showTab('citizens')">Citizens</button>
       <button onclick="showTab('apartment')">Apartment</button>
+      <button onclick="showTab('news')">News</button>
+      <button onclick="showTab('admin')">Admin</button>
     </nav>
 
-    <main>
-      <!-- Passport Tab -->
-      <section id="passport" class="tab-content" style="display: none;">
-        <h3>Passport Access</h3>
-        <div id="passport-setup">
-          <input type="password" id="passport-create" placeholder="Create Passport Password" />
-          <button onclick="createPassport()">Set Password</button>
-        </div>
-        <div id="passport-login" style="display: none;">
-          <input type="password" id="passport-password" placeholder="Enter Passport Password" />
-          <button onclick="unlockPassport()">Unlock</button>
-        </div>
-        <div id="passport-content" style="display: none;">
-          <p>Coming soon...</p>
-        </div>
-      </section>
+    <div id="passport" class="tab-content">
+      <h3>Passport</h3>
+      <div id="passport-setup">
+        <input type="password" id="passport-create" placeholder="Create Passport Password" />
+        <button onclick="createPassport()">Create</button>
+      </div>
+      <div id="passport-login" style="display:none;">
+        <input type="password" id="passport-password" placeholder="Enter Passport Password" />
+        <button onclick="unlockPassport()">Unlock</button>
+      </div>
+      <div id="passport-content" style="display:none;">
+        <p>Passport unlocked. Welcome to Germark.</p>
+      </div>
+    </div>
 
-      <!-- News Tab -->
-      <section id="news" class="tab-content" style="display: none;">
-        <h3>Germark News</h3>
-        <div id="news-articles"></div>
-        <h4>Add News</h4>
-        <input type="text" id="news-title" placeholder="News Title" />
-        <textarea id="news-body" placeholder="News Content"></textarea>
-        <input type="file" id="news-image" accept="image/*" />
-        <button onclick="addNews()">Add News</button>
-        <button onclick="removeLastNews()">Remove Last News</button>
-      </section>
+    <div id="profile" class="tab-content" style="display:none;">
+      <h3>Profile</h3>
+      <input type="file" id="profile-image" multiple />
+      <button onclick="saveProfileImage()">Save Images</button>
+      <div id="profile-gallery"></div>
+    </div>
 
-      <!-- Profile Tab -->
-      <section id="profile" class="tab-content" style="display: none;">
-        <h3>Your Profile</h3>
-        <p>Name: <span id="profile-name"></span></p>
-        <input type="file" id="profile-image" accept="image/*" multiple onchange="saveProfileImage()" />
-        <div id="profile-gallery"></div>
-      </section>
+    <div id="apartment" class="tab-content" style="display:none;">
+      <h3>Apartment</h3>
+      <p id="apartment-info">Loading...</p>
+    </div>
 
-      <!-- Citizens Tab -->
-      <section id="citizens" class="tab-content" style="display: none;">
-        <h3>Admin Panel</h3>
-        <input type="password" id="admin-password" placeholder="Enter Admin Password" />
-        <button onclick="unlockAdmin()">Unlock</button>
-        <div id="admin-panel" style="display: none;">
-          <p id="citizen-count">Total Citizens: 0</p>
-          <h4>Manage Citizens</h4>
-          <input type="text" id="new-chip-id" placeholder="Chip ID" />
-          <input type="text" id="new-citizen-name" placeholder="Citizen Name" />
-          <button onclick="addCitizen()">Add Citizen</button>
-          <input type="text" id="remove-chip-id" placeholder="Remove by Chip ID" />
-          <button onclick="removeCitizen(document.getElementById('remove-chip-id').value)">Remove Citizen</button>
-          <ul id="citizen-list"></ul>
-        </div>
-      </section>
+    <div id="news" class="tab-content" style="display:none;">
+      <h3>News</h3>
+      <input type="text" id="news-title" placeholder="Title" />
+      <textarea id="news-body" placeholder="Content"></textarea>
+      <input type="file" id="news-image" />
+      <button onclick="addNews()">Post News</button>
+      <button onclick="removeLastNews()">Remove Last</button>
+      <div id="news-articles"></div>
+    </div>
 
-      <!-- Apartment Tab -->
-      <section id="apartment" class="tab-content" style="display: none;">
-        <h3>Your Apartment</h3>
-        <p id="apartment-info">Assigned apartment will appear here.</p>
-        <h4>Assign Apartment</h4>
-        <input type="text" id="assign-name" placeholder="Citizen Name" />
-        <input type="text" id="assign-apartment" placeholder="Apartment Name" />
-        <button onclick="assignApartment(document.getElementById('assign-name').value, document.getElementById('assign-apartment').value)">Assign Apartment</button>
-      </section>
-    </main>
-  </div>
+    <div id="admin" class="tab-content" style="display:none;">
+      <h3>Admin Panel</h3>
+      <input type="password" id="admin-password" placeholder="Admin Password" />
+      <button onclick="unlockAdmin()">Unlock</button>
+      <div id="admin-panel" style="display:none;">
+        <input type="text" id="new-chip-id" placeholder="New Chip ID" />
+        <input type="text" id="new-citizen-name" placeholder="New Citizen Name" />
+        <button onclick="addCitizen()">Add Citizen</button>
+        <ul id="citizen-list"></ul>
+        <p id="citizen-count"></p>
+      </div>
+    </div>
+  </section>
 
   <script type="module" src="script.js"></script>
 </body>
