@@ -245,4 +245,17 @@ function displayNews() {
         <p>${item.body}</p>
         ${item.image ? `<img src="${item.image}" class="news-image" />` : ""}
       `;
-     
+      container.appendChild(article);
+    });
+  });
+}
+
+// ✅ Expose functions globally
+window.login = login;
+window.showTab = showTab;
+window.createPassport = createPassport;
+window.unlockPassport = unlockPassport;
+window.saveProfileImage = saveProfileImage;
+window.loadProfileImage = loadProfileImage;
+window.unlockAdmin = unlockAdmin;
+window.addCitizen
