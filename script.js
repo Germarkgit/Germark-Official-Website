@@ -254,6 +254,4 @@ function displayNews() {
 window.login = login;
 window.showTab = showTab;
 window.createPassport = createPassport;
-window.unlockPassport = unlockPassport;
-window.saveProfileImage = saveProfileImage;
-window.load
+window.unlockPassport = unlock
