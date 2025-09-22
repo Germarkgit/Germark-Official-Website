@@ -250,4 +250,6 @@ function displayNews() {
 // ✅ Expose functions to global scope
 window.login = login;
 window.showTab = showTab;
-window.createPassport =
+window.createPassport = createPassport;
+window.unlockPassport = unlockPassport;
+window.saveProfileImage
