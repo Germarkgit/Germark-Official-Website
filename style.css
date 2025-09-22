@@ -1,9 +1,10 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #b6d7a8, #38761d);
+  background: linear-gradient(to bottom right, #355e3b, #a9d18e); /* Dark green to light green */
   min-height: 100vh;
   overflow-x: hidden;
+  color: white;
 }
 
 header {
@@ -15,14 +16,14 @@ header {
   gap: 20px;
 }
 
-header img {
+.icon {
   width: 50px;
   height: 50px;
 }
 
 nav button {
   padding: 10px 15px;
-  background-color: #38761d;
+  background-color: #355e3b; /* Dark green */
   color: white;
   border: none;
   border-radius: 6px;
@@ -66,11 +67,7 @@ main {
   display: block;
 }
 
-#login-screen input,
-#passport input,
-#admin input,
-#news input,
-#news textarea {
+#login-screen input {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -80,42 +77,28 @@ main {
   color: white;
 }
 
-input::placeholder,
-textarea::placeholder {
+input::placeholder {
   color: #eee;
 }
 
-button {
+#login-screen button {
+  width: 100%;
   padding: 10px;
-  background-color: #38761d;
+  background-color: #355e3b;
   color: white;
   border: none;
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
-button:hover {
+#login-screen button:hover {
   background-color: #274e13;
-}
-
-#profile-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-top: 10px;
-}
-
-#profile-gallery img {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-  border-radius: 6px;
-  border: 1px solid #ccc;
 }
 
 #login-error {
   margin-top: 10px;
-  color: #ffdddd;
+  color: #ffd700; /* Golden */
   font-size: 0.9em;
 }
