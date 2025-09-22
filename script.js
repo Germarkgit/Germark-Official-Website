@@ -250,12 +250,10 @@ function displayNews() {
   });
 }
 
-// ✅ Expose functions globally
+// ✅ Expose functions globally so HTML buttons work
 window.login = login;
 window.showTab = showTab;
 window.createPassport = createPassport;
 window.unlockPassport = unlockPassport;
 window.saveProfileImage = saveProfileImage;
-window.loadProfileImage = loadProfileImage;
-window.unlockAdmin = unlockAdmin;
-window.addCitizen
+window.load
