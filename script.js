@@ -4,7 +4,7 @@ import { getDatabase, ref, set, get, onValue, remove } from "https://www.gstatic
 const firebaseConfig = {
   apiKey: "AIzaSyAJkSlH4IRuIOldjQyyEWINr2sGFylQ8co",
   authDomain: "germarkdigitalportal.firebaseapp.com",
-  databaseURL: "https://genmarkdigitalportal-default-rtdb.europe-west1.firebasedatabase.app",
+  databaseURL: "https://germarkdigitalportal-default-rtdb.europe-west1.firebasedatabase.app/",
   projectId: "germarkdigitalportal",
   storageBucket: "germarkdigitalportal.firebasestorage.app",
   messagingSenderId: "511878818738",
@@ -253,3 +253,4 @@ function displayNews() {
 window.login = login;
 window.showTab = showTab;
 window.createPassport
+
