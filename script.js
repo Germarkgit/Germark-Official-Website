@@ -263,3 +263,4 @@ window.removeCitizen = removeCitizen;
 window.assignApartment = assignApartment;
 window.addNews = addNews;
 window.removeLastNews = removeLastNews;
+// redeploy trigger
