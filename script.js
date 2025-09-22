@@ -4,7 +4,7 @@ import { getDatabase, ref, set, get, onValue, remove } from "https://www.gstatic
 const firebaseConfig = {
   apiKey: "AIzaSyAJkSlH4IRuIOldjQyyEWINr2sGFylQ8co",
   authDomain: "germarkdigitalportal.firebaseapp.com",
-  databaseURL: "https://germarkdigitalportal-default-rtdb.europe-west1.firebasedatabase.app/",
+  databaseURL: "https://germarkdigitalportal-default-rtdb.europe-west1.firebasedatabase.app",
   projectId: "germarkdigitalportal",
   storageBucket: "germarkdigitalportal.firebasestorage.app",
   messagingSenderId: "511878818738",
@@ -38,6 +38,7 @@ async function login() {
       document.getElementById("profile-name").textContent = currentUser;
       document.getElementById("login-error").style.display = "none";
       loadApartment();
+      loadProfileImage();
       showTab("passport");
     } else {
       document.getElementById("login-error").style.display = "block";
@@ -246,11 +247,4 @@ function displayNews() {
       `;
       container.appendChild(article);
     });
-  });
-}
-
-// Expose functions globally
-window.login = login;
-window.showTab = showTab;
-window.createPassport
-
+ 
