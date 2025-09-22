@@ -3,17 +3,39 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Germark Portal</title>
+  <title>Germark Republic</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
+  <!-- Public About Section -->
+  <header class="header">
+    <img src="assets/icon.png" alt="Germark Icon" class="logo" />
+    <img src="assets/germark-flag.png" alt="Germark Flag" class="flag" />
+    <h1>Welcome to the Republic of Germark</h1>
+  </header>
+
+  <main class="content">
+    <section class="about">
+      <h2>🛡️ About Germark</h2>
+      <p><strong>Germark</strong> is a sovereign digital republic founded by <strong>Mouhammad</strong> and <strong>Björn</strong>. It stands for peace, identity, and innovation.</p>
+
+      <h3>🗺️ Territory</h3>
+      <p>Germark’s capital is a 20×20 cm 3D-printed symbolic city, engineered with hybrid materials to represent our digital-physical sovereignty. As we grow, so will our symbolic territory — from micro-architecture to macro-ideals.</p>
+
+      <h3>👥 Citizenship</h3>
+      <p>Each citizen is issued a unique Chip ID and registered by name. Citizenship grants access to national services such as digital passports, apartment assignments, and participation in Germark’s evolving governance. We are onboarding new citizens, expanding our registry, and preparing for diplomatic recognition.</p>
+
+      <h3>🏛️ Government</h3>
+      <p>Germark is governed by a central digital authority. The founding citizens, Mouhammad and Björn, serve as architects and stewards of Germark’s digital constitution. As Germark grows, so will its institutions — from symbolic ministries to real-world collaborations.</p>
+
+      <h3>📬 Contact</h3>
+      <p>Email: <a href="mailto:Germarkcontact@gmail.com">Germarkcontact@gmail.com</a></p>
+    </section>
+  </main>
+
   <!-- Login Screen -->
   <div id="login-screen" class="screen login-box">
-    <img src="assets/icon.png" alt="Germark Icon" class="login-icon" />
-    <div class="flag-container">
-      <img src="assets/germark-flag.png" alt="Germark Flag" class="flag" />
-    </div>
-    <h1>WELCOME TO THE REPUBLIC OF GERMARK</h1>
+    <h2>Citizen Login</h2>
     <input type="text" id="name" placeholder="Name" />
     <input type="text" id="chip-id" placeholder="Chip ID" />
     <button onclick="login()">Enter Republic</button>
@@ -29,7 +51,6 @@
     </header>
 
     <nav class="tabs">
-      <button onclick="showTab('about')">About</button>
       <button onclick="showTab('passport')">Passport</button>
       <button onclick="showTab('news')">News</button>
       <button onclick="showTab('profile')">Profile</button>
@@ -38,14 +59,6 @@
     </nav>
 
     <main>
-      <!-- About Tab -->
-      <section id="about" class="tab-content">
-        <h3>About Germark</h3>
-        <p><strong>Germark</strong> is a sovereign digital republic founded by Mouhammad and Björn. It stands for peace, identity, and innovation.</p>
-        <p>Our capital is a 3D-printed symbolic city. Our citizens are verified by Chip ID. Our constitution is written in code.</p>
-        <p>Email: <a href="mailto:Germarkcontact@gmail.com">Germarkcontact@gmail.com</a></p>
-      </section>
-
       <!-- Passport Tab -->
       <section id="passport" class="tab-content" style="display: none;">
         <h3>Passport Access</h3>
@@ -111,7 +124,6 @@
     </main>
   </div>
 
-  <!-- Firebase-powered script -->
   <script type="module" src="script.js"></script>
 </body>
 </html>
