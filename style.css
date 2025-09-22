@@ -1,11 +1,14 @@
+/* Base layout */
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #355e3b, #a9d18e);
+  background: linear-gradient(to bottom right, #355e3b, #a9d18e); /* Dark green to light green */
   min-height: 100vh;
+  overflow-x: hidden;
   color: white;
 }
 
+/* Header and navigation */
 header {
   position: absolute;
   top: 20px;
@@ -13,11 +16,13 @@ header {
   display: flex;
   align-items: center;
   gap: 20px;
+  z-index: 10;
 }
 
 .icon {
   width: 50px;
   height: 50px;
+  animation: zoomBounce 1s ease-out forwards;
 }
 
 nav button {
@@ -28,12 +33,14 @@ nav button {
   border-radius: 6px;
   cursor: pointer;
   font-weight: bold;
+  transition: background 0.3s ease;
 }
 
 nav button:hover {
   background-color: #274e13;
 }
 
+/* Flag banner */
 .flag-banner {
   width: 100%;
   text-align: center;
@@ -45,16 +52,24 @@ nav button:hover {
   height: auto;
   border-radius: 8px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  animation: fadeInFlag 1.2s ease forwards;
 }
 
+/* Main content */
 main {
+  position: relative;
+  z-index: 1;
   padding: 60px 20px;
   max-width: 800px;
   margin: auto;
 }
 
+/* Tab content */
 .tab-content {
   display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.5s ease, transform 0.5s ease;
   background: rgba(255, 255, 255, 0.15);
   backdrop-filter: blur(10px);
   border-radius: 12px;
@@ -65,9 +80,13 @@ main {
 
 .tab-content.active {
   display: block;
+  opacity: 1;
+  transform: translateY(0);
 }
 
-input {
+/* Form elements */
+input,
+textarea {
   width: 100%;
   padding: 10px;
   margin: 10px 0;
@@ -77,7 +96,8 @@ input {
   color: white;
 }
 
-input::placeholder {
+input::placeholder,
+textarea::placeholder {
   color: #eee;
 }
 
@@ -89,14 +109,96 @@ button {
   border-radius: 6px;
   font-weight: bold;
   cursor: pointer;
+  transition: background 0.3s ease;
 }
 
 button:hover {
   background-color: #274e13;
 }
 
+/* Error message */
 #login-error {
   margin-top: 10px;
-  color: #ffd700;
+  color: #ffd700; /* Golden */
   font-size: 0.9em;
+}
+
+/* Profile gallery */
+#profile-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+#profile-gallery img {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+}
+
+/* News images */
+.news-image {
+  max-width: 100%;
+  margin-top: 10px;
+  border-radius: 6px;
+}
+
+/* Admin list */
+#citizen-list {
+  list-style: none;
+  padding: 0;
+  margin-top: 10px;
+}
+
+#citizen-list li {
+  padding: 5px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+/* Animations */
+@keyframes zoomBounce {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  60% {
+    transform: scale(1.2);
+    opacity: 1;
+  }
+  80% {
+    transform: scale(0.9);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+
+@keyframes fadeInFlag {
+  0% {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  nav button {
+    display: block;
+    margin-bottom: 10px;
+  }
+
+  .flag-banner img {
+    max-width: 80%;
+  }
+
+  #profile-gallery {
+    justify-content: center;
+  }
 }
