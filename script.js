@@ -28,7 +28,7 @@ window.addEventListener("DOMContentLoaded", () => {
   }
 });
 
-// Tab switching with animation
+// Tab switching
 function showTab(tabId) {
   document.querySelectorAll(".tab-content").forEach(tab => {
     tab.classList.remove("active");
