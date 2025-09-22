@@ -3,278 +3,165 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: 'Segoe UI', sans-serif;
 }
 
 body {
-  background-color: #e6f4ec; /* soft green */
-  color: #1e3d2f; /* deep green text */
+  font-family: 'Segoe UI', sans-serif;
+  background: url('assets/Germarkcountry.png') no-repeat center center fixed;
+  background-size: cover;
+  color: #222;
 }
 
-/* Login Screen */
-.login-box {
-  position: relative;
+/* Header (About Section) */
+.header {
   text-align: center;
-  padding: 3rem 1rem;
-  background-color: #d1e7dc;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-  max-width: 500px;
-  margin: 5rem auto;
-  animation: zoomIn 0.6s ease;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.85);
+  border-bottom: 2px solid #10b981;
 }
 
-@keyframes zoomIn {
-  0% {
-    transform: scale(0.7);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-
-.login-icon {
-  position: absolute;
-  top: 1rem;
-  left: 1rem;
-  width: 40px;
-  height: auto;
-  border-radius: 50%;
-}
-
-.flag-container {
-  display: flex;
-  justify-content: center;
-  margin-bottom: 1rem;
-}
-
-.flag {
-  width: 100px;
-  border-radius: 8px;
-  box-shadow: 0 2px 6px rgba(0,0,0,0.1);
+.logo, .flag {
+  width: 60px;
+  vertical-align: middle;
+  margin: 0 0.5rem;
 }
 
 h1 {
-  font-size: 1.8rem;
+  margin-top: 1rem;
+  font-size: 2rem;
+  color: #065f46;
+}
+
+/* About Content */
+.content {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem;
+  background-color: rgba(255, 255, 255, 0.9);
+  border-radius: 10px;
+}
+
+.about h2, .about h3 {
+  color: #047857;
+  margin-bottom: 0.5rem;
+}
+
+.about p {
   margin-bottom: 1rem;
-  color: #14532d;
-  text-shadow: 0 0 2px #d4af37; /* golden glow */
+  line-height: 1.6;
 }
 
-input[type="text"],
-input[type="password"],
-textarea {
-  width: 80%;
+/* Login Box */
+.login-box {
   max-width: 400px;
-  padding: 0.6rem;
-  margin: 0.5rem auto;
-  display: block;
-  border: 1px solid #cce3d8;
-  border-radius: 6px;
-  background-color: #ffffff;
+  margin: 3rem auto;
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 
-button {
-  padding: 0.6rem 1.2rem;
-  margin-top: 0.5rem;
-  background-color: #2f855a;
+.login-box h2 {
+  margin-bottom: 1rem;
+  color: #065f46;
+}
+
+.login-box input {
+  width: 100%;
+  padding: 0.75rem;
+  margin: 0.5rem 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+}
+
+.login-box button {
+  width: 100%;
+  padding: 0.75rem;
+  background-color: #10b981;
   color: white;
   border: none;
-  border-radius: 6px;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: bold;
   cursor: pointer;
   transition: background-color 0.3s ease;
 }
 
-button:hover {
-  background-color: #276749;
-}
-
-/* Error Message */
-#login-error {
-  font-weight: bold;
-  font-size: 0.9rem;
+.login-box button:hover {
+  background-color: #059669;
 }
 
 /* Home Screen */
-.screen {
-  padding: 1rem;
-}
-
-header {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 1rem;
-  background-color: #14532d;
-  padding: 0.5rem 1rem;
-  border-radius: 8px;
-  color: white;
-}
-
-.logo-small {
-  width: 40px;
-  height: auto;
-  border-radius: 50%;
-}
-
-.flag-small {
-  width: 60px;
-  height: auto;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-h2 {
-  font-size: 1.5rem;
-  color: #fefefe;
+#home-screen {
+  padding: 2rem;
+  background-color: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  margin: 2rem auto;
+  max-width: 1000px;
 }
 
 /* Tabs */
 .tabs {
   display: flex;
-  gap: 0.5rem;
+  justify-content: center;
+  gap: 1rem;
   margin-bottom: 1rem;
-  flex-wrap: wrap;
 }
 
 .tabs button {
-  background-color: #d1e7dc;
-  color: #14532d;
-  border: 1px solid #cce3d8;
+  padding: 0.5rem 1rem;
+  background-color: #10b981;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: bold;
 }
 
 .tabs button:hover {
-  background-color: #c0dbc9;
+  background-color: #059669;
 }
 
-/* Tab Wrapper and Transitions */
-.tab-wrapper {
-  position: relative;
-  overflow: hidden;
-  min-height: 300px;
-}
-
+/* Tab Content */
 .tab-content {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  transition: transform 0.4s ease, opacity 0.4s ease;
-  opacity: 0;
-  transform: translateX(100%);
-  pointer-events: none;
+  display: none;
+  padding: 1rem;
+  background-color: #f9fafb;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.05);
 }
 
 .tab-content.active {
-  opacity: 1;
-  transform: translateX(0);
-  pointer-events: auto;
-  position: relative;
+  display: block;
 }
 
-/* News */
-.news-articles article {
-  margin-bottom: 1rem;
-  padding: 1rem;
-  border-left: 4px solid #2f855a;
-  background-color: #f0fdf4;
-  border-radius: 6px;
-}
-
-.news-articles h5 {
-  margin-bottom: 0.5rem;
-  color: #14532d;
-}
-
-.news-image {
-  max-width: 100%;
-  margin-top: 0.5rem;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-.qr-code {
-  width: 120px;
-  margin: 1rem 0;
-}
-
-/* Profile */
-#profile-gallery img {
-  width: 100px;
-  margin: 0.5rem;
-  border-radius: 6px;
-  box-shadow: 0 1px 4px rgba(0,0,0,0.1);
-}
-
-/* Admin Panel */
-#admin-panel {
-  margin-top: 1rem;
-  padding: 1rem;
-  background-color: #f9fcfa;
-  border: 1px solid #cce3d8;
-  border-radius: 8px;
-}
-
-#citizen-list {
-  list-style: none;
-  margin-top: 0.5rem;
-}
-
-#citizen-list li {
-  padding: 0.3rem 0;
-  border-bottom: 1px solid #e2e8f0;
-}
-
-/* Apartment Info */
-#apartment-info {
-  font-weight: bold;
-  color: #14532d;
-  margin-top: 1rem;
-}
-
-/* Passport Link */
-.passport-link {
+/* Buttons */
+.button {
   display: inline-block;
-  margin-top: 0.5rem;
-  padding: 0.4rem 0.8rem;
-  background-color: #d4af37; /* golden */
-  color: #1e3d2f;
+  margin-top: 1rem;
+  padding: 0.5rem 1rem;
+  background-color: #10b981;
+  color: white;
   text-decoration: none;
-  border-radius: 6px;
+  border-radius: 5px;
   font-weight: bold;
 }
 
-.passport-link:hover {
-  background-color: #c49e2e;
+.button:hover {
+  background-color: #059669;
 }
 
 /* Responsive */
 @media (max-width: 600px) {
-  input[type="text"],
-  input[type="password"],
-  textarea {
-    width: 95%;
-  }
-
   .tabs {
     flex-direction: column;
+    align-items: center;
   }
 
-  .logo-small {
-    width: 30px;
-  }
-
-  .flag-small {
-    width: 50px;
-  }
-
-  .login-icon {
-    width: 30px;
-  }
-
-  .flag {
-    width: 90px;
+  .login-box, #home-screen, .content {
+    margin: 1rem;
+    padding: 1rem;
   }
 }
