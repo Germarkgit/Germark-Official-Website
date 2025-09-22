@@ -17,7 +17,18 @@ const db = getDatabase(app);
 
 let currentUser = null;
 
-// Tab switching
+// Animate icons and flag on load
+window.addEventListener("DOMContentLoaded", () => {
+  document.querySelector(".icon")?.classList.add("animate");
+  document.querySelector(".flag-banner img")?.classList.add("animate");
+
+  const loginBtn = document.getElementById("login-button");
+  if (loginBtn) {
+    loginBtn.addEventListener("click", login);
+  }
+});
+
+// Tab switching with animation
 function showTab(tabId) {
   document.querySelectorAll(".tab-content").forEach(tab => {
     tab.classList.remove("active");
@@ -27,7 +38,7 @@ function showTab(tabId) {
   const activeTab = document.getElementById(tabId);
   if (activeTab) {
     activeTab.style.display = "block";
-    activeTab.classList.add("active");
+    setTimeout(() => activeTab.classList.add("active"), 10);
   }
 
   if (tabId === "news") displayNews();
@@ -36,7 +47,7 @@ function showTab(tabId) {
 
 window.showTab = showTab;
 
-// Login
+// Login flow
 async function login() {
   const chipId = document.getElementById("chip-id").value.trim();
   const name = document.getElementById("name").value.trim();
@@ -52,13 +63,11 @@ async function login() {
 
     if (citizen && citizen.name.toLowerCase() === name.toLowerCase()) {
       currentUser = citizen.name;
-
+      document.getElementById("login-error").style.display = "none";
       document.getElementById("about").style.display = "none";
       document.getElementById("login").style.display = "none";
       document.getElementById("home-screen").style.display = "block";
       document.getElementById("profile-name").textContent = currentUser;
-      document.getElementById("login-error").style.display = "none";
-
       loadApartment();
       loadProfileImage();
       showTab("passport");
