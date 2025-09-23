@@ -88,11 +88,10 @@ function createPassport() {
   const password = document.getElementById("passport-create")?.value;
   if (!password || !currentUser) return;
 
-  set(ref(db, "passports/" + currentUser), { password })
-    .then(() => {
-      document.getElementById("passport-setup").style.display = "none";
-      document.getElementById("passport-login").style.display = "block";
-    });
+  set(ref(db, "passports/" + currentUser), { password }).then(() => {
+    document.getElementById("passport-setup").style.display = "none";
+    document.getElementById("passport-login").style.display = "block";
+  });
 }
 
 function unlockPassport() {
@@ -249,4 +248,9 @@ function loadCitizens() {
         li.textContent = `${data.name} (${id})`;
         list.appendChild(li);
       });
-      count.textContent = `Total Citizens: ${Object.keys(citizens).
+      count.textContent = `Total Citizens: ${Object.keys(citizens).length}`;
+    }
+  });
+}
+
+window.unlockAdmin = unlockAdmin;
