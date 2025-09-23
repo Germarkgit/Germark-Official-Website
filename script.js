@@ -48,7 +48,7 @@ function showTab(tabId) {
 
 window.showTab = showTab;
 
-// Login flow
+// Login
 async function login() {
   const chipId = document.getElementById("chip-id")?.value.trim();
   const name = document.getElementById("name")?.value.trim();
@@ -92,36 +92,31 @@ function createPassport() {
     .then(() => {
       document.getElementById("passport-setup").style.display = "none";
       document.getElementById("passport-login").style.display = "block";
-    })
-    .catch(error => console.error("Passport creation error:", error));
+    });
 }
 
 function unlockPassport() {
   const entered = document.getElementById("passport-password")?.value;
   if (!entered || !currentUser) return;
 
-  get(ref(db, "passports/" + currentUser))
-    .then(snapshot => {
-      if (snapshot.exists() && snapshot.val().password === entered) {
-        document.getElementById("passport-login").style.display = "none";
-        document.getElementById("passport-content").style.display = "block";
-      } else {
-        alert("Incorrect password.");
-      }
-    })
-    .catch(error => console.error("Passport unlock error:", error));
+  get(ref(db, "passports/" + currentUser)).then(snapshot => {
+    if (snapshot.exists() && snapshot.val().password === entered) {
+      document.getElementById("passport-login").style.display = "none";
+      document.getElementById("passport-content").style.display = "block";
+    } else {
+      alert("Incorrect password.");
+    }
+  });
 }
 
 function loadPassportTab() {
   if (!currentUser) return;
-  get(ref(db, "passports/" + currentUser))
-    .then(snapshot => {
-      if (snapshot.exists()) {
-        document.getElementById("passport-setup").style.display = "none";
-        document.getElementById("passport-login").style.display = "block";
-      }
-    })
-    .catch(error => console.error("Passport load error:", error));
+  get(ref(db, "passports/" + currentUser)).then(snapshot => {
+    if (snapshot.exists()) {
+      document.getElementById("passport-setup").style.display = "none";
+      document.getElementById("passport-login").style.display = "block";
+    }
+  });
 }
 
 window.createPassport = createPassport;
@@ -156,12 +151,10 @@ window.saveProfileImage = saveProfileImage;
 // Apartment
 function loadApartment() {
   if (!currentUser) return;
-  get(ref(db, "apartments/" + currentUser))
-    .then(snapshot => {
-      const info = snapshot.exists() ? snapshot.val().info : "No apartment assigned.";
-      document.getElementById("apartment-info").textContent = info;
-    })
-    .catch(error => console.error("Apartment load error:", error));
+  get(ref(db, "apartments/" + currentUser)).then(snapshot => {
+    const info = snapshot.exists() ? snapshot.val().info : "No apartment assigned.";
+    document.getElementById("apartment-info").textContent = info;
+  });
 }
 
 // News
@@ -188,39 +181,35 @@ function addNews() {
 }
 
 function removeLastNews() {
-  get(ref(db, "news"))
-    .then(snapshot => {
-      if (snapshot.exists()) {
-        const keys = Object.keys(snapshot.val());
-        const lastKey = keys[keys.length - 1];
-        remove(ref(db, "news/" + lastKey)).then(displayNews);
-      }
-    })
-    .catch(error => console.error("Remove news error:", error));
+  get(ref(db, "news")).then(snapshot => {
+    if (snapshot.exists()) {
+      const keys = Object.keys(snapshot.val());
+      const lastKey = keys[keys.length - 1];
+      remove(ref(db, "news/" + lastKey)).then(displayNews);
+    }
+  });
 }
 
 function displayNews() {
-  get(ref(db, "news"))
-    .then(snapshot => {
-      const container = document.getElementById("news-articles");
-      if (!container) return;
-      container.innerHTML = "";
+  get(ref(db, "news")).then(snapshot => {
+    const container = document.getElementById("news-articles");
+    if (!container) return;
+    container.innerHTML = "";
 
-      if (snapshot.exists()) {
-        Object.values(snapshot.val()).forEach(article => {
-          const div = document.createElement("div");
-          div.innerHTML = `<h4>${article.title}</h4><p>${article.body}</p>`;
-          if (article.image) {
-            const img = document.createElement("img");
-            img.src = article.image;
-            img.className = "news-image";
-            div.appendChild(img);
-          }
-          container.appendChild(div);
-        });
-      }
-    })
-    .catch(error => console.error("Display news error:", error));
+    if (snapshot.exists()) {
+      Object.values(snapshot.val()).forEach(article => {
+        const div = document.createElement("div");
+        div.innerHTML = `<h4>${article.title}</h4><p>${article.body}</p>`;
+        if (article.image) {
+          const img = document.createElement("img");
+          img.src = article.image;
+          img.className = "news-image";
+          div.appendChild(img);
+        }
+        container.appendChild(div);
+      });
+    }
+  });
 }
 
 window.addNews = addNews;
@@ -242,19 +231,22 @@ function addCitizen() {
   const name = document.getElementById("new-citizen-name")?.value;
   if (!chipId || !name) return;
 
-  set(ref(db, "citizens/" + chipId), { name })
-    .then(loadCitizens)
-    .catch(error => console.error("Add citizen error:", error));
+  set(ref(db, "citizens/" + chipId), { name }).then(loadCitizens);
 }
 
 function loadCitizens() {
-  get(ref(db, "citizens"))
-    .then(snapshot => {
-      const list = document.getElementById("citizen-list");
-      const count = document.getElementById("citizen-count");
-      if (!list || !count) return;
+  get(ref(db, "citizens")).then(snapshot => {
+    const list = document.getElementById("citizen-list");
+    const count = document.getElementById("citizen-count");
+    if (!list || !count) return;
 
-      list.innerHTML = "";
+    list.innerHTML = "";
 
-      if (snapshot.exists()) {
-        const citizens =
+    if (snapshot.exists()) {
+      const citizens = snapshot.val();
+      Object.entries(citizens).forEach(([id, data]) => {
+        const li = document.createElement("li");
+        li.textContent = `${data.name} (${id})`;
+        list.appendChild(li);
+      });
+      count.textContent = `Total Citizens: ${Object.keys(citizens).
