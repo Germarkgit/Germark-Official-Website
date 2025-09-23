@@ -2,11 +2,11 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Germark Republic</title>
   <link rel="stylesheet" href="style.css" />
   <link rel="icon" href="assets/icon.png" />
-  <script src="https://code.jquery.com/jquery-1.9.1.min.js"></script>
 </head>
 <body>
   <!-- Header with icon and navigation -->
@@ -59,11 +59,11 @@
       <div id="passport" class="tab-content">
         <h3>Passport</h3>
         <div id="passport-setup">
-          <input type="password" id="passport-create" placeholder="Create Passport Password" />
+          <input type="password" id="passport-create" placeholder="Create Passport Password" autocomplete="off" />
           <button onclick="createPassport()">Create</button>
         </div>
         <div id="passport-login" style="display:none;">
-          <input type="password" id="passport-password" placeholder="Enter Passport Password" />
+          <input type="password" id="passport-password" placeholder="Enter Passport Password" autocomplete="off" />
           <button onclick="unlockPassport()">Unlock</button>
         </div>
         <div id="passport-content" style="display:none;">
@@ -88,7 +88,7 @@
       <!-- News Tab -->
       <div id="news" class="tab-content" style="display:none;">
         <h3>News</h3>
-        <input type="text" id="news-title" placeholder="Title" />
+        <input type="text" id="news-title" placeholder="Title" autocomplete="off" />
         <textarea id="news-body" placeholder="Content"></textarea>
         <input type="file" id="news-image" />
         <button onclick="addNews()">Post News</button>
@@ -99,11 +99,11 @@
       <!-- Admin Tab -->
       <div id="admin" class="tab-content" style="display:none;">
         <h3>Admin Panel</h3>
-        <input type="password" id="admin-password" placeholder="Admin Password" />
+        <input type="password" id="admin-password" placeholder="Admin Password" autocomplete="off" />
         <button onclick="unlockAdmin()">Unlock</button>
         <div id="admin-panel" style="display:none;">
-          <input type="text" id="new-chip-id" placeholder="New Chip ID" />
-          <input type="text" id="new-citizen-name" placeholder="New Citizen Name" />
+          <input type="text" id="new-chip-id" placeholder="New Chip ID" autocomplete="off" />
+          <input type="text" id="new-citizen-name" placeholder="New Citizen Name" autocomplete="off" />
           <button onclick="addCitizen()">Add Citizen</button>
           <ul id="citizen-list"></ul>
           <p id="citizen-count"></p>
@@ -115,4 +115,3 @@
   <script type="module" src="script.js"></script>
 </body>
 </html>
-
