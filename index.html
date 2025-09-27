@@ -33,16 +33,19 @@
       <p>We welcome institutional partnerships, cultural exchange, and visionary thinkers to help shape Germark’s future. Contact us at <a href="mailto:Germarkcontact@gmail.com">Germarkcontact@gmail.com</a>.</p>
     </section>
 
-    <!-- Login Tab -->
-    <section id="login" class="tab-content">
-      <div id="login-screen">
-        <h2>Citizen Login</h2>
-        <input type="text" id="name" placeholder="Name" autocomplete="off" />
-        <input type="text" id="chip-id" placeholder="Chip ID" autocomplete="off" />
-        <button id="login-button">Enter Republic</button>
-        <p id="login-error" style="display:none;">Login failed. Please check your credentials.</p>
-      </div>
-    </section>
+<!-- Login Tab -->
+<section id="login" class="tab-content">
+  <div id="login-screen">
+    <h2>Citizen Login</h2>
+    <input type="text" id="name" placeholder="Name" autocomplete="off" />
+    <input type="text" id="chip-id" placeholder="Chip ID" autocomplete="off" />
+    <button id="login-button">Enter Republic</button>
+
+    <!-- Feedback boxes -->
+    <p id="login-error" style="display:none;" class="status-box error">Login failed. Please check your credentials.</p>
+    <p id="login-success" style="display:none;" class="status-box success">Login successful. Welcome to Germark!</p>
+  </div>
+</section>
 
     <!-- Dashboard -->
     <section id="home-screen" style="display:none;">
@@ -55,21 +58,30 @@
         <button onclick="showTab('admin')">Admin</button>
       </nav>
 
-      <!-- Passport Tab -->
-      <div id="passport" class="tab-content">
-        <h3>Passport</h3>
-        <div id="passport-setup">
-          <input type="password" id="passport-create" placeholder="Create Passport Password" autocomplete="off" />
-          <button onclick="createPassport()">Create</button>
-        </div>
-        <div id="passport-login" style="display:none;">
-          <input type="password" id="passport-password" placeholder="Enter Passport Password" autocomplete="off" />
-          <button onclick="unlockPassport()">Unlock</button>
-        </div>
-        <div id="passport-content" style="display:none;">
-          <p>Passport unlocked. Welcome to Germark.</p>
-        </div>
-      </div>
+<!-- Passport Tab -->
+<div id="passport" class="tab-content">
+  <h3>Passport</h3>
+
+  <!-- Setup: Create password -->
+  <div id="passport-setup">
+    <input type="password" id="passport-create" placeholder="Create Passport Password" autocomplete="off" />
+    <button onclick="createPassport()">Create</button>
+  </div>
+
+  <!-- Login: Enter password -->
+  <div id="passport-login" style="display:none;">
+    <input type="password" id="passport-password" placeholder="Enter Passport Password" autocomplete="off" />
+    <button onclick="unlockPassport()">Unlock</button>
+
+    <!-- ✅ Feedback box -->
+    <p id="passport-status" class="status-box" style="display:none;"></p>
+  </div>
+
+  <!-- Content: Once unlocked -->
+  <div id="passport-content" style="display:none;">
+    <p>Coming soon...</p>
+  </div>
+</div>
 
       <!-- Profile Tab -->
       <div id="profile" class="tab-content" style="display:none;">
@@ -96,22 +108,24 @@
         <div id="news-articles"></div>
       </div>
 
-      <!-- Admin Tab -->
-      <div id="admin" class="tab-content" style="display:none;">
-        <h3>Admin Panel</h3>
-        <input type="password" id="admin-password" placeholder="Admin Password" autocomplete="off" />
-        <button onclick="unlockAdmin()">Unlock</button>
-        <div id="admin-panel" style="display:none;">
-          <input type="text" id="new-chip-id" placeholder="New Chip ID" autocomplete="off" />
-          <input type="text" id="new-citizen-name" placeholder="New Citizen Name" autocomplete="off" />
-          <button onclick="addCitizen()">Add Citizen</button>
-          <ul id="citizen-list"></ul>
-          <p id="citizen-count"></p>
-        </div>
-      </div>
-    </section>
-  </main>
+     <!-- Admin Tab -->
+<div id="admin" class="tab-content" style="display:none;">
+  <h3>Admin Panel</h3>
+  <input type="password" id="admin-password" placeholder="Admin Password" autocomplete="off" />
+  <button onclick="unlockAdmin()">Unlock</button>
+  <!-- Feedback box -->
+  <p id="admin-status" class="status-box" style="display:none;"></p>
+
+  <div id="admin-panel" style="display:none;">
+    <input type="text" id="new-chip-id" placeholder="New Chip ID" autocomplete="off" />
+    <input type="text" id="new-citizen-name" placeholder="New Citizen Name" autocomplete="off" />
+    <button onclick="addCitizen()">Add Citizen</button>
+    <ul id="citizen-list"></ul>
+    <p id="citizen-count"></p>
+  </div>
+</div>
 
   <script type="module" src="script.js"></script>
 </body>
 </html>
+
