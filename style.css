@@ -186,3 +186,37 @@ button:hover {
     justify-content: center;
   }
 }
+/* 🔔 Germark Feedback Boxes */
+.status-box {
+  padding: 10px;
+  margin-top: 10px;
+  border-radius: 6px;
+  font-weight: bold;
+  text-align: center;
+  font-family: 'Segoe UI', sans-serif;
+  animation: slideDown 0.4s ease;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.status-box.error {
+  background-color: #ff4d4d;
+  color: white;
+  border: 1px solid #cc0000;
+}
+
+.status-box.success {
+  background-color: #4CAF50;
+  color: white;
+  border: 1px solid #2e7d32;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
