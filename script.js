@@ -232,6 +232,7 @@ function addCitizen() {
 
   set(ref(db, "citizens/" + chipId), { name }).then(loadCitizens);
 }
+window.addCitizen = addCitizen;
 
 function loadCitizens() {
   get(ref(db, "citizens"))
