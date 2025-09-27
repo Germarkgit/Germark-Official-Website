@@ -116,13 +116,6 @@ button:hover {
   background-color: #274e13;
 }
 
-/* Error message */
-#login-error {
-  margin-top: 10px;
-  color: #FFFFFF /* White */
-  font-size: 0.9em;
-}
-
 /* Profile gallery */
 #profile-gallery {
   display: flex;
@@ -220,4 +213,5 @@ button:hover {
     transform: translateY(0);
   }
 }
+
 
