@@ -221,7 +221,7 @@ function unlockAdmin() {
 
   if (!statusBox) return;
 
-  if (password === "Germark2025") {
+  if (password === "germark2025") {
     statusBox.textContent = "Password Accepted";
     statusBox.className = "status-box success";
     statusBox.style.display = "block";
@@ -258,3 +258,4 @@ function loadCitizens() {
     if (snapshot.exists()) {
       const citizens = snapshot.val();
       Object.entries(citizens).forEach
+
