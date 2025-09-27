@@ -246,7 +246,15 @@ function addCitizen() {
   set(ref(db, "citizens/" + chipId), { name }).then(loadCitizens);
 }
 window.addCitizen = addCitizen;
+function removeCitizen(chipId) {
+  if (!chipId) return;
 
+  const confirmed = confirm(`Are you sure you want to remove citizen ${chipId}?`);
+  if (!confirmed) return;
+
+  remove(ref(db, "citizens/" + chipId)).then(loadCitizens);
+}
+window.removeCitizen = removeCitizen;
 function loadCitizens() {
   get(ref(db, "citizens"))
     .then(snapshot => {
@@ -260,7 +268,10 @@ function loadCitizens() {
         const citizens = snapshot.val();
         Object.entries(citizens).forEach(([id, data]) => {
           const li = document.createElement("li");
-          li.textContent = `${data.name?.trim() || "Unnamed"} (${id})`;
+         li.innerHTML = `
+  ${data.name?.trim() || "Unnamed"} (${id})
+  <button onclick="removeCitizen('${id}')" style="margin-left:10px;">Remove</button>
+`;
           list.appendChild(li);
         });
         count.textContent = `Total Citizens: ${Object.keys(citizens).length}`;
@@ -275,4 +286,3 @@ function loadCitizens() {
 }
 
 window.loadCitizens = loadCitizens;
-
