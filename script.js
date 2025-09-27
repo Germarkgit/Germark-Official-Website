@@ -221,7 +221,7 @@ function unlockAdmin() {
 
   if (!statusBox) return;
 
-  if (password === "germark2025") {
+  if (password.trim() === "Germark2025") {
     statusBox.textContent = "Password Accepted";
     statusBox.className = "status-box success";
     statusBox.style.display = "block";
@@ -257,5 +257,17 @@ function loadCitizens() {
 
     if (snapshot.exists()) {
       const citizens = snapshot.val();
-      Object.entries(citizens).forEach
-
+      Object.entries(citizens).forEach(([id, data]) => {
+        const li = document.createElement("li");
+        li.textContent = `${data.name} (${id})`;
+        list.appendChild(li);
+      });
+      count.textContent = `Total Citizens: ${Object.keys(citizens).length}`;
+    } else {
+      count.textContent = "Total Citizens: 0";
+    }
+  }).catch(error => {
+    console.error("Error loading citizens:", error);
+  });
+}
+window.loadCitizens = loadCitizens;
