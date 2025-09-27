@@ -217,26 +217,12 @@ window.removeLastNews = removeLastNews;
 // Admin
 function unlockAdmin() {
   const password = document.getElementById("admin-password")?.value;
-  const statusBox = document.getElementById("admin-status");
-
-  if (!statusBox) return;
-
-  if (password.trim() === "Germark2025") {
-    statusBox.textContent = "Password Accepted";
-    statusBox.className = "status-box success";
-    statusBox.style.display = "block";
+  if (password === "admin123") {
     document.getElementById("admin-panel").style.display = "block";
     loadCitizens();
   } else {
-    statusBox.textContent = "Access Denied";
-    statusBox.className = "status-box error";
-    statusBox.style.display = "block";
-    document.getElementById("admin-panel").style.display = "none";
+    alert("Incorrect admin password.");
   }
-
-  setTimeout(() => {
-    statusBox.style.display = "none";
-  }, 3000);
 }
 
 function addCitizen() {
@@ -263,12 +249,8 @@ function loadCitizens() {
         list.appendChild(li);
       });
       count.textContent = `Total Citizens: ${Object.keys(citizens).length}`;
-    } else {
-      count.textContent = "Total Citizens: 0";
     }
-  }).catch(error => {
-    console.error("Error loading citizens:", error);
   });
 }
 
-window.loadCitizens = loadCitizens;
+window.unlockAdmin = unlockAdmin;
