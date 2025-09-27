@@ -214,15 +214,28 @@ function displayNews() {
 window.addNews = addNews;
 window.removeLastNews = removeLastNews;
 
-// Admin
 function unlockAdmin() {
- const password = document.getElementById("admin-password")?.value.trim().toLowerCase();
-if (password === "germark2025") {
+  const password = document.getElementById("admin-password")?.value.trim().toLowerCase();
+  const statusBox = document.getElementById("admin-status");
+
+  if (!statusBox) return;
+
+  if (password === "germark2025") {
+    statusBox.textContent = "Password Accepted";
+    statusBox.className = "status-box success";
+    statusBox.style.display = "block";
     document.getElementById("admin-panel").style.display = "block";
     loadCitizens();
   } else {
-    alert("Incorrect admin password.");
+    statusBox.textContent = "Access Denied";
+    statusBox.className = "status-box error";
+    statusBox.style.display = "block";
+    document.getElementById("admin-panel").style.display = "none";
   }
+
+  setTimeout(() => {
+    statusBox.style.display = "none";
+  }, 3000);
 }
 window.unlockAdmin = unlockAdmin;
 function addCitizen() {
@@ -262,3 +275,4 @@ function loadCitizens() {
 }
 
 window.loadCitizens = loadCitizens;
+
