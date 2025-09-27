@@ -2,7 +2,7 @@
 body {
   margin: 0;
   font-family: 'Segoe UI', sans-serif;
-  background: linear-gradient(to bottom right, #355e3b, #a9d18e);
+  background: linear-gradient(to bottom right, #355e3b, #a9d18e); /* Dark green to light green */
   min-height: 100vh;
   overflow-x: hidden;
   color: white;
@@ -119,7 +119,7 @@ button:hover {
 /* Error message */
 #login-error {
   margin-top: 10px;
-  color: #ffd700;
+  color: #ffd700; /* Golden */
   font-size: 0.9em;
 }
 
@@ -156,37 +156,6 @@ button:hover {
 #citizen-list li {
   padding: 5px 0;
   border-bottom: 1px solid rgba(255,255,255,0.2);
-}
-
-/* Admin status box */
-.status-box {
-  padding: 10px;
-  margin-bottom: 10px;
-  border-radius: 6px;
-  font-weight: bold;
-  text-align: center;
-  animation: slideDown 0.4s ease;
-}
-
-.status-box.error {
-  background-color: #ff4d4d;
-  color: white;
-}
-
-.status-box.success {
-  background-color: #4CAF50;
-  color: white;
-}
-
-@keyframes slideDown {
-  from {
-    opacity: 0;
-    transform: translateY(-10px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 
 /* Animations */
