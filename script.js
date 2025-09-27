@@ -239,8 +239,8 @@ function unlockAdmin() {
 }
 window.unlockAdmin = unlockAdmin;
 function addCitizen() {
-  const chipId = document.getElementById("new-chip-id")?.value;
   const name = document.getElementById("new-citizen-name")?.value;
+  const chipId = document.getElementById("new-chip-id")?.value;
   if (!chipId || !name) return;
 
   set(ref(db, "citizens/" + chipId), { name }).then(loadCitizens);
@@ -306,3 +306,4 @@ function loadCitizens() {
 
 window.loadCitizens = loadCitizens;
 document.getElementById("confirm-remove").addEventListener("click", confirmRemoveCitizen);
+
