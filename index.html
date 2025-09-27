@@ -99,8 +99,12 @@
       <!-- Admin Tab -->
       <div id="admin" class="tab-content" style="display:none;">
         <h3>Admin Panel</h3>
+        <!-- Status Box for Password Feedback -->
+        <div id="admin-status" class="status-box" style="display:none;"></div>
+
         <input type="password" id="admin-password" placeholder="Admin Password" autocomplete="off" />
         <button onclick="unlockAdmin()">Unlock</button>
+
         <div id="admin-panel" style="display:none;">
           <input type="text" id="new-chip-id" placeholder="New Chip ID" autocomplete="off" />
           <input type="text" id="new-citizen-name" placeholder="New Citizen Name" autocomplete="off" />
