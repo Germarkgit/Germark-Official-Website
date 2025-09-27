@@ -246,15 +246,34 @@ function addCitizen() {
   set(ref(db, "citizens/" + chipId), { name }).then(loadCitizens);
 }
 window.addCitizen = addCitizen;
-function removeCitizen(chipId) {
-  if (!chipId) return;
 
-  const confirmed = confirm(`Are you sure you want to remove citizen ${chipId}?`);
-  if (!confirmed) return;
+let pendingRemovalId = null;
 
-  remove(ref(db, "citizens/" + chipId)).then(loadCitizens);
+function showRemovePopup(chipId) {
+  pendingRemovalId = chipId;
+  document.getElementById("remove-message").textContent =
+    `Are you sure you want to remove citizen ${chipId}?`;
+  document.getElementById("remove-popup").style.display = "flex";
 }
-window.removeCitizen = removeCitizen;
+
+function closeRemovePopup() {
+  pendingRemovalId = null;
+  document.getElementById("remove-popup").style.display = "none";
+}
+
+function confirmRemoveCitizen() {
+  if (!pendingRemovalId) return;
+
+  remove(ref(db, "citizens/" + pendingRemovalId)).then(() => {
+    loadCitizens();
+    closeRemovePopup();
+  });
+}
+
+window.showRemovePopup = showRemovePopup;
+window.closeRemovePopup = closeRemovePopup;
+window.confirmRemoveCitizen = confirmRemoveCitizen;
+
 function loadCitizens() {
   get(ref(db, "citizens"))
     .then(snapshot => {
@@ -268,10 +287,10 @@ function loadCitizens() {
         const citizens = snapshot.val();
         Object.entries(citizens).forEach(([id, data]) => {
           const li = document.createElement("li");
-         li.innerHTML = `
-  ${data.name?.trim() || "Unnamed"} (${id})
-  <button onclick="removeCitizen('${id}')" style="margin-left:10px;">Remove</button>
-`;
+          li.innerHTML = `
+            ${data.name?.trim() || "Unnamed"} (${id})
+            <button onclick="showRemovePopup('${id}')" style="margin-left:10px;">Remove</button>
+          `;
           list.appendChild(li);
         });
         count.textContent = `Total Citizens: ${Object.keys(citizens).length}`;
@@ -286,3 +305,4 @@ function loadCitizens() {
 }
 
 window.loadCitizens = loadCitizens;
+document.getElementById("confirm-remove").addEventListener("click", confirmRemoveCitizen);
