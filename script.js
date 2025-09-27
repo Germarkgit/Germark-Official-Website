@@ -234,24 +234,30 @@ function addCitizen() {
 }
 
 function loadCitizens() {
-  get(ref(db, "citizens")).then(snapshot => {
-    const list = document.getElementById("citizen-list");
-    const count = document.getElementById("citizen-count");
-    if (!list || !count) return;
+  get(ref(db, "citizens"))
+    .then(snapshot => {
+      const list = document.getElementById("citizen-list");
+      const count = document.getElementById("citizen-count");
+      if (!list || !count) return;
 
-    list.innerHTML = "";
+      list.innerHTML = "";
 
-    if (snapshot.exists()) {
-      const citizens = snapshot.val();
-      Object.entries(citizens).forEach(([id, data]) => {
-        const li = document.createElement("li");
-        li.textContent = `${data.name} (${id})`;
-        list.appendChild(li);
-      });
-      count.textContent = `Total Citizens: ${Object.keys(citizens).length}`;
-    }
-  });
+      if (snapshot.exists()) {
+        const citizens = snapshot.val();
+        Object.entries(citizens).forEach(([id, data]) => {
+          const li = document.createElement("li");
+          li.textContent = `${data.name?.trim() || "Unnamed"} (${id})`;
+          list.appendChild(li);
+        });
+        count.textContent = `Total Citizens: ${Object.keys(citizens).length}`;
+      } else {
+        list.innerHTML = "<li>No citizens found.</li>";
+        count.textContent = "Total Citizens: 0";
+      }
+    })
+    .catch(error => {
+      console.error("Failed to load citizens:", error);
+    });
 }
 
-window.unlockAdmin = unlockAdmin;
-
+window.loadCitizens = loadCitizens;
