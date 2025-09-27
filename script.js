@@ -216,15 +216,15 @@ window.removeLastNews = removeLastNews;
 
 // Admin
 function unlockAdmin() {
-  const password = document.getElementById("admin-password")?.value;
-  if (password === "admin123") {
+ const password = document.getElementById("admin-password")?.value.trim().toLowerCase();
+if (password === "germark2025") {
     document.getElementById("admin-panel").style.display = "block";
     loadCitizens();
   } else {
     alert("Incorrect admin password.");
   }
 }
-
+window.unlockAdmin = unlockAdmin;
 function addCitizen() {
   const chipId = document.getElementById("new-chip-id")?.value;
   const name = document.getElementById("new-citizen-name")?.value;
@@ -254,3 +254,4 @@ function loadCitizens() {
 }
 
 window.unlockAdmin = unlockAdmin;
+
