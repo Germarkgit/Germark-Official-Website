@@ -217,7 +217,7 @@ window.removeLastNews = removeLastNews;
 // Admin
 function unlockAdmin() {
   const password = document.getElementById("admin-password")?.value;
-  if (password === "admin123") {
+  if (password === "Germark2025") {
     document.getElementById("admin-panel").style.display = "block";
     loadCitizens();
   } else {
@@ -254,3 +254,4 @@ function loadCitizens() {
 }
 
 window.unlockAdmin = unlockAdmin;
+
