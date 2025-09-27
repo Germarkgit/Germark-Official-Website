@@ -35,6 +35,16 @@ function showTab(tabId) {
     tab.classList.remove("active");
     tab.style.display = "none";
   });
+window.showTab = showTab;
+  const activeTab = document.getElementById(tabId);
+  if (activeTab) {
+    activeTab.style.display = "block";
+    setTimeout(() => activeTab.classList.add("active"), 10);
+  }
+
+  if (tabId === "news") displayNews();
+  if (tabId === "passport") loadPassportTab();
+}
 
   const activeTab = document.getElementById(tabId);
   if (activeTab) {
@@ -271,3 +281,4 @@ function loadCitizens() {
   });
 }
 window.loadCitizens = loadCitizens;
+
