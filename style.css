@@ -273,3 +273,14 @@ button:hover {
 #apartment-map img:hover {
   transform: scale(1.02);
 }
+.map-image {
+  width: 90%;
+  max-width: 600px;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.map-image:hover {
+  transform: scale(1.02);
+}
