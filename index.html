@@ -110,17 +110,33 @@
 </div>
 </div>
 
-      <!-- News Tab -->
-      <div id="news" class="tab-content" style="display:none;">
-        <h3>News</h3>
-        <input type="text" id="news-title" placeholder="Title" autocomplete="off" />
-        <textarea id="news-body" placeholder="Content"></textarea>
-        <input type="file" id="news-image" />
-        <button onclick="addNews()">Post News</button>
-        <button onclick="removeLastNews()">Remove Last</button>
-        <div id="news-articles"></div>
-      </div>
+     <!-- News Tab -->
+<div id="news" class="tab-content" style="display:none;">
+  <h3>News</h3>
+  <input type="text" id="news-title" placeholder="Title" autocomplete="off" />
+  <textarea id="news-body" placeholder="Content"></textarea>
+  <input type="file" id="news-image" />
+  <button onclick="addNews()">Post News</button>
+  <button onclick="removeLastNews()">Remove Last</button>
+  <div id="news-articles"></div>
 
+  <!-- 📰 Germark News Discord -->
+  <div id="news-discord" style="margin-top:30px; text-align:center;">
+    <h4>Join Germark’s News Channel</h4>
+    <p>Stay updated with announcements, citizen reports, and development updates via our official Discord server.</p>
+    
+    <!-- Discord Invite Link -->
+    <a href="https://discord.gg/HnpAbbYR" target="_blank" class="discord-button">
+      Join Germark on Discord
+    </a>
+
+    <!-- QR Code -->
+    <div style="margin-top:20px;">
+      <img src="assets/qr-discord.png" alt="Discord QR Code" class="qr-image" />
+      <p style="margin-top:8px;">Scan to join instantly</p>
+    </div>
+  </div>
+</div> <!-- End of News Tab -->
      <!-- Admin Tab -->
 <div id="admin" class="tab-content" style="display:none;">
   <h3>Admin Panel</h3>
@@ -150,4 +166,5 @@
   <script type="module" src="script.js"></script>
 </body>
 </html>
+
 
