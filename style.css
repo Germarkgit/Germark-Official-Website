@@ -299,3 +299,24 @@ button:hover {
 .download-button:hover {
   background-color: #274e13;
 }
+.discord-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #5865F2; /* Discord blue */
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
+}
+
+.discord-button:hover {
+  background-color: #4752c4;
+}
+
+.qr-image {
+  width: 180px;
+  border-radius: 12px;
+  box-shadow: 0 0 8px rgba(0,0,0,0.2);
+}
