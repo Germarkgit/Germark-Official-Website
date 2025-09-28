@@ -32,14 +32,13 @@
     <p>Citizens are issued digital passports, assigned eco-friendly apartments, and can contribute to national news and development. Our founding citizens, Mouhammad and Bjørn, envisioned a republic where technology serves the people — not the other way around.</p>
     <p>We welcome institutional partnerships, cultural exchange, and visionary thinkers to help shape Germark’s future. Contact us at <a href="mailto:Germarkcontact@gmail.com">Germarkcontact@gmail.com</a>.</p>
 
-    <!-- 🛂 Germark Passport Download -->
-<div id="passport-download" style="margin-top:30px; text-align:center;">
-  <h4>Official Germark Passport</h4>
-  <p>You can download the official watermarked passport below:</p>
-  <a href="assets/germark-pas-watermark.pdf" download class="download-button">
-    Download Passport (PDF)
-  </a>
-</div>
+    <!-- 🛂 Germark Passport Preview -->
+    <div id="passport-preview" style="margin-top:20px; text-align:center;">
+      <h4>Official Germark Passport</h4>
+      <img src="assets/germark-pas-watermark.png" alt="Germark Passport" class="passport-image" />
+    </div>
+  </section>
+</main>
 <!-- Login Tab -->
 <section id="login" class="tab-content">
   <div id="login-screen">
@@ -110,33 +109,17 @@
 </div>
 </div>
 
-     <!-- News Tab -->
-<div id="news" class="tab-content" style="display:none;">
-  <h3>News</h3>
-  <input type="text" id="news-title" placeholder="Title" autocomplete="off" />
-  <textarea id="news-body" placeholder="Content"></textarea>
-  <input type="file" id="news-image" />
-  <button onclick="addNews()">Post News</button>
-  <button onclick="removeLastNews()">Remove Last</button>
-  <div id="news-articles"></div>
+      <!-- News Tab -->
+      <div id="news" class="tab-content" style="display:none;">
+        <h3>News</h3>
+        <input type="text" id="news-title" placeholder="Title" autocomplete="off" />
+        <textarea id="news-body" placeholder="Content"></textarea>
+        <input type="file" id="news-image" />
+        <button onclick="addNews()">Post News</button>
+        <button onclick="removeLastNews()">Remove Last</button>
+        <div id="news-articles"></div>
+      </div>
 
-  <!-- 📰 Germark News Discord -->
-  <div id="news-discord" style="margin-top:30px; text-align:center;">
-    <h4>Join Germark’s News Channel</h4>
-    <p>Stay updated with announcements, citizen reports, and development updates via our official Discord server.</p>
-    
-    <!-- Discord Invite Link -->
-    <a href="https://discord.gg/HnpAbbYR" target="_blank" class="discord-button">
-      Join Germark on Discord
-    </a>
-
-    <!-- QR Code -->
-    <div style="margin-top:20px;">
-      <img src="assets/qr-discord.png" alt="Discord QR Code" class="qr-image" />
-      <p style="margin-top:8px;">Scan to join instantly</p>
-    </div>
-  </div>
-</div> <!-- End of News Tab -->
      <!-- Admin Tab -->
 <div id="admin" class="tab-content" style="display:none;">
   <h3>Admin Panel</h3>
@@ -166,5 +149,3 @@
   <script type="module" src="script.js"></script>
 </body>
 </html>
-
-
