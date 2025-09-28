@@ -275,12 +275,23 @@ button:hover {
 }
 .map-image {
   width: 90%;
-  max-width: 600px;
+  max-width: 300px;
   border-radius: 16px;
   box-shadow: 0 0 10px rgba(0,0,0,0.2);
   transition: transform 0.3s ease;
 }
 
 .map-image:hover {
+  transform: scale(1.02);
+}
+.passport-image {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 16px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  transition: transform 0.3s ease;
+}
+
+.passport-image:hover {
   transform: scale(1.02);
 }
