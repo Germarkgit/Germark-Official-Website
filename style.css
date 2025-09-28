@@ -284,14 +284,18 @@ button:hover {
 .map-image:hover {
   transform: scale(1.02);
 }
-.passport-image {
-  width: 100%;
-  max-width: 500px;
-  border-radius: 16px;
-  box-shadow: 0 0 10px rgba(0,0,0,0.2);
-  transition: transform 0.3s ease;
+.download-button {
+  display: inline-block;
+  margin-top: 10px;
+  padding: 10px 20px;
+  background-color: #355e3b;
+  color: white;
+  border-radius: 8px;
+  text-decoration: none;
+  font-weight: bold;
+  transition: background 0.3s ease;
 }
 
-.passport-image:hover {
-  transform: scale(1.02);
+.download-button:hover {
+  background-color: #274e13;
 }
